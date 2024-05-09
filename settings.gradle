@@ -1,0 +1,3 @@
+rootProject.name = "HeiMaDataStructure"
+include ':app'
+include ':DataStructureModule'
