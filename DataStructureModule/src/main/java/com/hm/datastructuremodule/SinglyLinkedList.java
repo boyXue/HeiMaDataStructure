@@ -26,12 +26,24 @@ public class SinglyLinkedList implements Iterable<Integer> {
 //                System.out.println(integer);
 //            }
 //        });
-        singlyLinkedList.remove(3);
+
+//        singlyLinkedList.remove(3);
+
 //        singlyLinkedList.insert(0,10);
-        for (int node : singlyLinkedList) {
-            System.out.println(node);
-        }
-//        System.out.println(singlyLinkedList.get(3));
+//        for (int node : singlyLinkedList) {
+//            System.out.println(node);
+//        }
+        singlyLinkedList.loop3(new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) {
+                System.out.println("before:" + integer);
+            }
+        }, new Consumer<Integer>() {
+            @Override
+            public void accept(Integer integer) {
+                System.out.println("after:" + integer);
+            }
+        });
     }
 
 
@@ -121,6 +133,19 @@ public class SinglyLinkedList implements Iterable<Integer> {
     public void loop2(Consumer<Integer> consumer) {
         for (Node node = head; node != null; node = node.next) {
             consumer.accept(node.value);
+        }
+    }
+
+    public void loop3(Consumer<Integer> before, Consumer<Integer> after) {
+        recursion(head, before, after);
+    }
+
+    private void recursion(Node curr, Consumer<Integer> before, Consumer<Integer> after) {//针对某一个节点进行的操作
+
+        if (curr != null) {
+            before.accept(curr.value);
+            recursion(curr.next, before, after);
+
         }
     }
 
