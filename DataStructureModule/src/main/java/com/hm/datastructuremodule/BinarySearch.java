@@ -5,7 +5,8 @@ public class BinarySearch {
     public static void main(String[] args) {
         int arr[] = {1, 8, 8, 10, 89, 100, 145, 184};
 //        int i = binarySearch(arr, 0, arr.length - 1, 145);
-        int i = binarySearch4(arr, 2);
+//        int i = binarySearch4(arr, 2);
+        int i = search(arr, 10);
         System.out.print("查找值的下标：" + i);
     }
 
@@ -77,7 +78,6 @@ public class BinarySearch {
     }
 
     /**
-     *
      * @param arr
      * @param target
      * @return 返回>=target的最靠左的位置
@@ -93,5 +93,24 @@ public class BinarySearch {
             }
         }
         return i;
+    }
+
+    public static int search(int[] a,int target){
+        return f(a,target,0,a.length-1);
+    }
+
+    private static int f(int[] a, int target, int left, int right) {
+        if (left > right) {
+            return -1;
+        }
+        int m = (left + right) >>> 1;
+        if (target < a[m]) {
+            return f(a, target, left, m - 1);
+        } else if (target > a[m]) {
+            return f(a, target, m + 1, right);
+        } else {
+            return m;
+        }
+
     }
 }
